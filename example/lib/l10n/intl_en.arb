@@ -1,0 +1,5 @@
+{
+  "@@locale": "en",
+  "things" : "{count, plural, other{things}}",
+  "things2" : "{count, plural, one{thing} few{things} many{things} other{things}}"
+}

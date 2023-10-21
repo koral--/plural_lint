@@ -1,0 +1,29 @@
+name: plural_lint
+description: TODO
+version: 0.0.1
+repository: https://github.com/koral--/plural_lint
+issue_tracker: https://github.com/koral--/plural_lint/issues
+topics:
+    - lint
+    - check
+    - internationalization
+    - static-code-analysis
+    - i18n
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  analyzer: ^6.2.0
+  analyzer_plugin: ^0.11.3
+  custom_lint_builder: ^0.5.4
+  petitparser: ^5.4.0
+  xml: ^6.3.0
+  path: ^1.8.3
+  meta: ^1.9.1
+  resource_portable: ^3.1.0
+
+dev_dependencies:
+  test: ^1.24.8
+  lints: ^3.0.0
+  custom_lint: ^0.5.4
