@@ -66,7 +66,8 @@ class MinionStdout implements Stdout {
   }
 
   @override
-  Future<dynamic> addStream(Stream<List<int>> stream) => _sink.addStream(stream);
+  Future<dynamic> addStream(Stream<List<int>> stream) =>
+      _sink.addStream(stream);
 
   @override
   Future<dynamic> flush() => _sink.flush();

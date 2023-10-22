@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:custom_lint/custom_lint.dart';
 import 'package:test/scaffolding.dart';
 
@@ -10,9 +11,9 @@ void main() {
 
     await IOOverrides.runZoned(
       () => customLint(
-          watchMode: false,
-          workingDirectory: Directory('${Directory.current.path}/example'),
-        ),
+        watchMode: false,
+        workingDirectory: Directory('${Directory.current.path}/example'),
+      ),
       stdout: () => minionStdout,
     );
     print(await minionStdout.getCapturedOutput());
