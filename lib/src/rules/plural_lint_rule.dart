@@ -19,15 +19,20 @@ abstract class PluralLintRule extends LintRule {
 
   @override
   Future<void> startUp(
-      CustomLintResolver resolver, CustomLintContext context) async {
+    CustomLintResolver resolver,
+    CustomLintContext context,
+  ) async {
     pluralRules = await CldrData.pluralRules();
     return super.startUp(resolver, context);
   }
 
   @override
   @nonVirtual
-  void run(CustomLintResolver resolver, ErrorReporter reporter,
-      CustomLintContext context) {
+  void run(
+    CustomLintResolver resolver,
+    ErrorReporter reporter,
+    CustomLintContext context,
+  ) {
     final file = File(reporter.source.uri.path);
     final plurals = <(List<String>, int)>[];
     final jsonParseResult =
