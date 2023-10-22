@@ -1,0 +1,31 @@
+name: Dart
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+      - "**.md"    
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: dart-lang/setup-dart@v1  
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze project source
+        run: dart analyze --fatal-info
+
+      - name: Run tests
+        run: dart test
+
+      - name: Run publishing check
+        run: dart pub publish --dry-run
