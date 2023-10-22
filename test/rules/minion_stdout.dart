@@ -3,64 +3,29 @@ import 'dart:convert';
 import 'dart:io';
 
 class MinionStdout implements Stdout {
-  MinionStdout(
-      {this.hasTerminal = true,
-      this.terminalColumns = 80,
-      this.terminalLines = 24,
-      this.supportsAnsiEscapes = true,
-      Encoding encoding = utf8}) {
-    _sink = IOSink(controller.sink, encoding: encoding);
+  MinionStdout() {
+    _sink = IOSink(_controller.sink, encoding: utf8);
+    _output = utf8.decodeStream(_controller.stream);
   }
 
-  StreamController<List<int>> controller = StreamController();
+  final StreamController<List<int>> _controller = StreamController();
+  late final Future<String> _output;
   late final IOSink _sink;
 
-  IOSink? _nonBlocking;
-
-  /// Whether there is a terminal attached to stdout.
   @override
-  bool hasTerminal;
+  int get terminalColumns => throw StdoutException('Not supported');
 
-  /// The number of columns of the terminal.
-  ///
-  /// If no terminal is attached to stdout, a [StdoutException] is thrown. See
-  /// [hasTerminal] for more info.
   @override
-  int terminalColumns;
+  int get terminalLines => throw StdoutException('Not supported');
 
-  /// The number of lines of the terminal.
-  ///
-  /// If no terminal is attached to stdout, a [StdoutException] is thrown. See
-  /// [hasTerminal] for more info.
   @override
-  int terminalLines;
+  bool get supportsAnsiEscapes => false;
 
-  /// Whether connected to a terminal that supports ANSI escape sequences.
-  ///
-  /// Not all terminals are recognized, and not all recognized terminals can
-  /// report whether they support ANSI escape sequences, so this value is a
-  /// best-effort attempt at detecting the support.
-  ///
-  /// The actual escape sequence support may differ between terminals,
-  /// with some terminals supporting more escape sequences than others,
-  /// and some terminals even differing in behavior for the same escape
-  /// sequence.
-  ///
-  /// The ANSI color selection is generally supported.
-  ///
-  /// Currently, a `TERM` environment variable containing the string `xterm`
-  /// will be taken as evidence that ANSI escape sequences are supported.
-  /// On Windows, only versions of Windows 10 after v.1511
-  /// ("TH2", OS build 10586) will be detected as supporting the output of
-  /// ANSI escape sequences, and only versions after v.1607 ("Anniversary
-  /// Update", OS build 14393) will be detected as supporting the input of
-  /// ANSI escape sequences.
   @override
-  bool supportsAnsiEscapes;
+  bool get hasTerminal => false;
 
-  /// A non-blocking `IOSink` for the same output.
   @override
-  IOSink get nonBlocking => _nonBlocking ??= stdout.nonBlocking;
+  IOSink get nonBlocking => throw StdoutException('Not supported');
 
   @override
   Encoding get encoding => _sink.encoding;
@@ -69,11 +34,6 @@ class MinionStdout implements Stdout {
   set encoding(Encoding encoding) {
     _sink.encoding = encoding;
   }
-
-  /// TODO: I'm uncertain what the default values should be here
-  /// when calling _blockQueue.readLineSync as they are
-  /// taken from the requirements of stdio.
-  String? readLineSync() => null;
 
   @override
   void write(Object? object) {
@@ -106,15 +66,20 @@ class MinionStdout implements Stdout {
   }
 
   @override
-  // ignore: strict_raw_type
-  Future addStream(Stream<List<int>> stream) => _sink.addStream(stream);
+  Future<dynamic> addStream(Stream<List<int>> stream) => _sink.addStream(stream);
+
   @override
-  // ignore: strict_raw_type
-  Future flush() => _sink.flush();
+  Future<dynamic> flush() => _sink.flush();
+
   @override
-  // ignore: strict_raw_type
-  Future close() => _sink.close();
+  Future<dynamic> close() => _sink.close();
+
   @override
-  // ignore: strict_raw_type
-  Future get done => _sink.done;
+  Future<dynamic> get done => _sink.done;
+
+  Future<String> getCapturedOutput() async {
+    await flush();
+    await close();
+    return _output;
+  }
 }
