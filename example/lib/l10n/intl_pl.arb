@@ -1,0 +1,6 @@
+{
+  "@@locale": "pl",
+  "month2" : "{count, plural, one{miesiąc} few{miesiące} many{miesięcy} other{miesica}}",
+  "month3" : "{count, plural, one{miesiąc}  two{miesiące} many {miesięcy} other{miesica }}",
+  "month4" : "{count, plural, other{miesica}}"
+}
