@@ -3,7 +3,8 @@
 [![Pub Version](https://img.shields.io/pub/v/plural_lint)](https://pub.dev/packages/plural_lint)
 
 **plural_lint** is a developer tool to check plural translations in your project. 
-It detects both missing and unused plural quantities in the ARB files.
+It detects both missing and unused plural quantities in the ARB files for each locale according to
+the Unicode CLDR plural rules.
 
 ## Installing plural_lint
 
