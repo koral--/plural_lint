@@ -1,6 +1,9 @@
 name: plural_lint
-description: Developer tool to check plural translations in ARB files.
-version: 0.0.2
+description: >
+  Plural_lint is a developer tool to check plural translations in your project.
+  It detects both missing and unused plural quantities in the ARB files for each locale according to
+  the Unicode CLDR plural rules.
+version: 0.0.3
 repository: https://github.com/koral--/plural_lint
 issue_tracker: https://github.com/koral--/plural_lint/issues
 topics:
@@ -27,3 +30,6 @@ dev_dependencies:
   test: ^1.24.8
   lints: ^3.0.0
   custom_lint: ^0.5.4
+  flutter:
+    sdk: flutter
+    
