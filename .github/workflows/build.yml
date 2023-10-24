@@ -17,6 +17,10 @@ jobs:
 
       - name: Install dependencies
         run: dart pub get
+        
+      - name: Compile ARB files
+        working-directory: example
+        run: flutter pub get && flutter pub global activate intl_utils && flutter pub global run intl_utils:generate
 
       - name: Build & run lint check
         run: dart run custom_lint --no-fatal-infos --no-fatal-warnings
