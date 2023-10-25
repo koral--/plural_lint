@@ -1,5 +1,5 @@
-name: app
-description: A new Flutter project.
+name: plural_lint_example
+description: An example project for plural_lint package.
 
 publish_to: 'none'
 

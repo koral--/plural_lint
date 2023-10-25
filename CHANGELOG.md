@@ -1,3 +1,8 @@
+# 0.0.5
+
+* Log JSON parsing errors and unrecognized locales
+* Example project descriptions cleanup
+
 # 0.0.4
 
 * Shorten pubspec description

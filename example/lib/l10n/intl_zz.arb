@@ -1,0 +1,4 @@
+{
+  "@@locale": "zz",
+  "things" : "{count, plural, other{thing}}"
+}
