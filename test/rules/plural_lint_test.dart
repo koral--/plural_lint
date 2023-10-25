@@ -7,7 +7,7 @@ import 'package:test/scaffolding.dart';
 import 'capturing_stdout.dart';
 
 void main() {
-  test('test lint output', () async {
+  test('performs lint checks', () async {
     final capturingStdout = CapturingStdout();
     await IOOverrides.runZoned(
       () => customLint(
@@ -39,5 +39,9 @@ void main() {
         output,
         contains(
             'lib/l10n/intl_fr.arb:4:16 • These quantities: [few] are not meaningful for locale: fr • extra_quantity • INFO'));
+    expect(
+        output,
+        contains(
+            "/lib/l10n/intl_zz.arb'. No CLDR plural rules for locale: zz"));
   });
 }

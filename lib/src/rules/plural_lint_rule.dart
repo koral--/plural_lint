@@ -36,6 +36,8 @@ abstract class PluralLintRule extends LintRule {
     final jsonParseResult =
         JsonDefinition(plurals.add).build().parse(file.readAsStringSync());
     if (jsonParseResult is Failure) {
+      print(
+          'Ignoring ARB: $file. JSON parsing error: ${jsonParseResult.message}');
       return;
     }
     final json = jsonParseResult.value;
@@ -45,6 +47,7 @@ abstract class PluralLintRule extends LintRule {
 
     final quantitiesForLocale = CldrData().pluralRules()[locale];
     if (quantitiesForLocale == null) {
+      print('Ignoring ARB: $file. No CLDR plural rules for locale: $locale');
       return;
     }
 
