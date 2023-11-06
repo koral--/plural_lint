@@ -1,3 +1,7 @@
+# 0.0.6
+
+* Update CLDR to 44
+
 # 0.0.5
 
 * Log JSON parsing errors and unrecognized locales
