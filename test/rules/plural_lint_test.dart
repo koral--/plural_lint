@@ -34,11 +34,11 @@ void main() {
     expect(
         output,
         contains(
-            'lib/l10n/intl_en.arb:4:16 • These quantities: [few, many] are not meaningful for locale: en • extra_quantity • INFO'));
+            'lib/l10n/intl_en.arb:4:16 • These quantities: [few, many] are not used in locale: en • unused_quantity • INFO'));
     expect(
         output,
         contains(
-            'lib/l10n/intl_fr.arb:4:16 • These quantities: [few] are not meaningful for locale: fr • extra_quantity • INFO'));
+            'lib/l10n/intl_fr.arb:4:16 • These quantities: [few] are not used in locale: fr • unused_quantity • INFO'));
     expect(
         output,
         contains(

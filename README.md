@@ -50,7 +50,7 @@ Will trigger a warning:
 warning: These quantities: [one] are missing for locale: en (missing_quantity at [app] lib/l10n/intl_en.arb:3)
 ```
 
-### extra_quantity
+### unused_quantity
 
 This lint detects unused plural quantities in your translations. For example in English (`en`),
 `few` and `many` quantities will never be used. Note that `zero`, `one` and `two` 
@@ -66,7 +66,7 @@ For instance, the following entry in English ARB file:
 ```
 Will trigger a warning:
 ```
-info: These quantities: [few, many] are not meaningful for locale: en (extra_quantity at [app] lib/l10n/intl_en.arb:4)
+info: These quantities: [few, many] are not used in locale: en (unused_quantity at [app] lib/l10n/intl_en.arb:4)
 ```
 
 ### Data source
@@ -82,7 +82,8 @@ the `analysis_options.yaml` file like this:
 ```yaml
 custom_lint:
   rules:
-    - extra_quantity: false
+    - unused_quantity: false
+    - missing_quantity: false
 ```
 
 ## Running plural_lint from the terminal/CI

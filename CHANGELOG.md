@@ -1,3 +1,7 @@
+# 0.0.7
+
+* Rename extra_quantity rule to unused_quantity
+
 # 0.0.6
 
 * Update CLDR to 44
