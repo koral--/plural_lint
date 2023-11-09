@@ -4,8 +4,8 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 import 'package:plural_lint/src/rules/plural_lint_rule.dart';
 import 'package:plural_lint/src/utils/extensions.dart';
 
-class ExtraQuantityLintRule extends PluralLintRule {
-  ExtraQuantityLintRule() : super(code: _code);
+class UnusedQuantityLintRule extends PluralLintRule {
+  UnusedQuantityLintRule() : super(code: _code);
 
   static const _nonCldrIntlQuantities = [
     'zero',
@@ -14,8 +14,8 @@ class ExtraQuantityLintRule extends PluralLintRule {
   ];
 
   static const _code = LintCode(
-    name: 'extra_quantity',
-    problemMessage: 'These quantities: {0} are not meaningful for locale: {1}',
+    name: 'unused_quantity',
+    problemMessage: 'These quantities: {0} are not used in locale: {1}',
     errorSeverity: ErrorSeverity.INFO,
   );
 
