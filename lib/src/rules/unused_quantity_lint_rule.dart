@@ -5,7 +5,7 @@ import 'package:plural_lint/src/rules/plural_lint_rule.dart';
 import 'package:plural_lint/src/utils/extensions.dart';
 
 class UnusedQuantityLintRule extends PluralLintRule {
-  UnusedQuantityLintRule() : super(code: _code);
+  const UnusedQuantityLintRule() : super(code: _code);
 
   static const _nonCldrIntlQuantities = [
     'zero',

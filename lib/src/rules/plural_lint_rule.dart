@@ -9,7 +9,7 @@ import 'package:plural_lint/src/arb/definition.dart';
 import 'package:plural_lint/src/cldr/plural_rules.dart';
 
 abstract class PluralLintRule extends LintRule {
-  PluralLintRule({required super.code});
+  const PluralLintRule({required super.code});
 
   @override
   @nonVirtual

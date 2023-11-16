@@ -31,21 +31,13 @@ class CldrData {
       Map.fromEntries(XmlDocument.parse(
               await Resource('package:plural_lint/src/cldr/plurals.xml')
                   .readAsString(encoding: utf8))
-          .xpath('/supplementalData/plurals/pluralRules')
-          .map((item) => (
-                item.xpath('@locales').first.value!.split(' '),
-                item
-                    .xpath('pluralRule/@count')
-                    .map((e) => e.value!)
-                    .toList(growable: false),
-              ))
-          .map((item) {
-        final (locales, counts) = item;
-        return locales
-            .map((locale) => MapEntry(locale, counts))
-            .toList(growable: false);
-      }).fold(
-        <MapEntry<String, List<String>>>[],
-        (previousValue, element) => previousValue.toList()..addAll(element),
-      ));
+          .xpath('/supplementalData/plurals[@type="cardinal"]/pluralRules')
+          .map((item) => item.xpath('@locales').first.value!.split(' ').map(
+              (locale) => MapEntry(
+                  locale,
+                  item
+                      .xpath('pluralRule/@count')
+                      .map((e) => e.value!)
+                      .toList(growable: false))))
+          .expand((item) => item));
 }
