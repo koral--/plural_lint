@@ -5,7 +5,7 @@ import 'package:plural_lint/src/rules/plural_lint_rule.dart';
 import 'package:plural_lint/src/utils/extensions.dart';
 
 class MissingQuantityLintRule extends PluralLintRule {
-  MissingQuantityLintRule() : super(code: _code);
+  const MissingQuantityLintRule() : super(code: _code);
 
   static const _code = LintCode(
     name: 'missing_quantity',

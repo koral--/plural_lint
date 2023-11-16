@@ -1,3 +1,8 @@
+# 0.0.8
+
+Dependency updates
+Code simplifications
+
 # 0.0.7
 
 * Rename extra_quantity rule to unused_quantity

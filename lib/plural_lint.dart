@@ -8,7 +8,7 @@ PluginBase createPlugin() => _PluralLint();
 
 class _PluralLint extends PluginBase {
   @override
-  List<LintRule> getLintRules(CustomLintConfigs configs) => [
+  List<LintRule> getLintRules(_) => const [
         UnusedQuantityLintRule(),
         MissingQuantityLintRule(),
       ];

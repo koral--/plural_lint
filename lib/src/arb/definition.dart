@@ -164,8 +164,9 @@ class JsonDefinition extends GrammarDefinition<Object?> {
   Parser<List<String>> pluralClauses() => seq2(
         ref0(pluralQuantity),
         ref0(pluralValue),
-      ).plus().map(
-          (list) => list.map((item) => item.first).toList(growable: false));
+      )
+          .plus()
+          .map((list) => list.map((item) => item.$1).toList(growable: false));
 
   Parser<String> placeholder() => seq2(
         ref0(letter),
@@ -180,12 +181,12 @@ class JsonDefinition extends GrammarDefinition<Object?> {
         char(',').trim(),
         string('plural'),
         char(',').trim(),
-        pluralClauses(),
+        ref0(pluralClauses),
       ).map5((_, __, ___, ____, values) => values);
 
   Parser<List<String>> intlPlural() => seq3(
         char('{').trim(),
-        pluralBody(),
+        ref0(pluralBody),
         char('}').trim(),
       ).map3((_, chars, __) => chars).callCC((continuation, context) {
         final result = continuation(context);
