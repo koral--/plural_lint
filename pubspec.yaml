@@ -13,7 +13,7 @@ topics:
     - i18n
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: '>=3.3.1 <4.0.0'
 
 dependencies:
   analyzer: ^6.2.0
