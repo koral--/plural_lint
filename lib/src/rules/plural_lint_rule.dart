@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:analyzer/error/listener.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 import 'package:meta/meta.dart';
@@ -31,23 +29,25 @@ abstract class PluralLintRule extends LintRule {
     ErrorReporter reporter,
     CustomLintContext context,
   ) {
-    final file = File(reporter.source.uri.path);
+    final filePath = resolver.path;
     final plurals = <(List<String>, int)>[];
-    final jsonParseResult =
-        JsonDefinition(plurals.add).build().parse(file.readAsStringSync());
+    final jsonParseResult = JsonDefinition(plurals.add)
+        .build()
+        .parse(resolver.source.contents.data);
     if (jsonParseResult is Failure) {
       print(
-          'Ignoring ARB: $file. JSON parsing error: ${jsonParseResult.message}');
+          'Ignoring ARB: $filePath. JSON parsing error: ${jsonParseResult.message}');
       return;
     }
     final json = jsonParseResult.value;
     final locale = json['@@locale'] ??
         json['_locale'] ??
-        basenameWithoutExtension(file.path).split('_').skip(1).join('_');
+        basenameWithoutExtension(filePath).split('_').skip(1).join('_');
 
     final quantitiesForLocale = CldrData().pluralRules()[locale];
     if (quantitiesForLocale == null) {
-      print('Ignoring ARB: $file. No CLDR plural rules for locale: $locale');
+      print(
+          'Ignoring ARB: $filePath. No CLDR plural rules for locale: $locale');
       return;
     }
 
