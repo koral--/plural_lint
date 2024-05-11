@@ -39,9 +39,7 @@ void main() {
         output,
         contains(
             'lib/l10n/intl_fr.arb:4:16 • These quantities: [few] are not used in locale: fr • unused_quantity • INFO'));
-    expect(
-        output,
-        contains(
-            "/lib/l10n/intl_zz.arb'. No CLDR plural rules for locale: zz"));
+    expect(output,
+        contains('/lib/l10n/intl_zz.arb. No CLDR plural rules for locale: zz'));
   });
 }

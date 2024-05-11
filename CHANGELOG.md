@@ -1,11 +1,16 @@
+# 0.0.10
+
+* Code cleanup
+* Dependency updates
+
 # 0.0.9
 
-Dependency updates
+* Dependency updates
 
 # 0.0.8
 
-Dependency updates
-Code simplifications
+* Dependency updates
+* Code simplifications
 
 # 0.0.7
 
