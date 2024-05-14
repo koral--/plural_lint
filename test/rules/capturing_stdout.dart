@@ -83,4 +83,7 @@ class CapturingStdout implements Stdout {
     await close();
     return _output;
   }
+
+  @override
+  String lineTerminator = '\n';
 }
