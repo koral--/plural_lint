@@ -27,7 +27,7 @@ dependencies:
 
 dev_dependencies:
   test: ^1.25.2
-  lints: ^4.0.0
+  lints: ^5.0.0
   custom_lint: ^0.6.0
   flutter:
     sdk: flutter
